@@ -1,0 +1,24 @@
+overwrite: true
+schema:
+  - "https://graphql-pokemon.now.sh/graphql"
+  - "./src/graphql/local/typeDefs.ts"
+documents:
+  - "./src/graphql/fragments/favorite.ts"
+  - "./src/graphql/remote/queries.ts"
+generates:
+  ./src/graphql/generated.d.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      avoidOptionals: true
+      noHOC: true
+      noComponents: true
+      noNamespaces: true
+      withHooks: true
+      withSubscriptionHooks: true
+      apolloReactCommonImportFrom: "@apollo/client"
+      apolloReactComponentsImportFrom: "@apollo/client"
+      apolloReactHocImportFrom: "@apollo/client"
+      apolloReactHooksImportFrom: "@apollo/client"
