@@ -4,7 +4,7 @@ import { cache } from "./local/cache";
 // initialize client to query graphql from ApolloClient
 const client = new ApolloClient({
   cache,
-  uri: "https://graphql-pokemon.now.sh/graphql",
+  uri: "https://graphql-weather-api.herokuapp.com/",
   connectToDevTools: true,
 });
 

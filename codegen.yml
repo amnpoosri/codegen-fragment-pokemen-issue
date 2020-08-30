@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - "https://graphql-pokemon.now.sh/graphql"
+  - "https://graphql-weather-api.herokuapp.com/"
   - "./src/graphql/local/typeDefs.ts"
 documents:
   - "./src/graphql/fragments/favorite.ts"

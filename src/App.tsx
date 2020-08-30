@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { useGetPokemonQuery } from "./graphql/generated.d";
+import { useGetCityByNameQuery } from "./graphql/generated.d";
 
 function App() {
-  const { data, loading, error } = useGetPokemonQuery({
+  const { data, loading, error } = useGetCityByNameQuery({
     variables: {
-      name: "charizard",
+      name: "Helsinki",
     },
   });
 
@@ -21,7 +20,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <p>useGetPokemonQuery</p>
+          <p>useGetCityByNameQuery</p>
         </header>
       </div>
     );

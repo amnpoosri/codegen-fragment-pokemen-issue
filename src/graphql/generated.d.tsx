@@ -10,159 +10,223 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
-/** Query any Pokémon by number or name */
+export type City = {
+  __typename?: 'City';
+  coord: Maybe<Coordinates>;
+  country: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['ID']>;
+  isFavorite: Scalars['Boolean'];
+  name: Maybe<Scalars['String']>;
+  weather: Maybe<Weather>;
+};
+
+export type Coordinates = {
+  __typename?: 'Coordinates';
+  lon: Maybe<Scalars['Float']>;
+  lat: Maybe<Scalars['Float']>;
+};
+
+export type Summary = {
+  __typename?: 'Summary';
+  title: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']>;
+};
+
+export type Temperature = {
+  __typename?: 'Temperature';
+  actual: Maybe<Scalars['Float']>;
+  feelsLike: Maybe<Scalars['Float']>;
+  min: Maybe<Scalars['Float']>;
+  max: Maybe<Scalars['Float']>;
+};
+
+export type Wind = {
+  __typename?: 'Wind';
+  speed: Maybe<Scalars['Float']>;
+  deg: Maybe<Scalars['Int']>;
+};
+
+export type Clouds = {
+  __typename?: 'Clouds';
+  all: Maybe<Scalars['Int']>;
+  visibility: Maybe<Scalars['Int']>;
+  humidity: Maybe<Scalars['Int']>;
+};
+
+export type Weather = {
+  __typename?: 'Weather';
+  summary: Maybe<Summary>;
+  temperature: Maybe<Temperature>;
+  wind: Maybe<Wind>;
+  clouds: Maybe<Clouds>;
+  timestamp: Maybe<Scalars['Int']>;
+};
+
+export type ConfigInput = {
+  units: Maybe<Unit>;
+  lang: Maybe<Language>;
+};
+
 export type Query = {
   __typename?: 'Query';
-  query: Maybe<Query>;
-  pokemons: Maybe<Array<Maybe<Pokemon>>>;
-  pokemon: Maybe<Pokemon>;
+  getCityByName: Maybe<City>;
+  getCityById: Maybe<Array<Maybe<City>>>;
 };
 
 
-/** Query any Pokémon by number or name */
-export type QueryPokemonsArgs = {
-  first: Scalars['Int'];
+export type QueryGetCityByNameArgs = {
+  name: Scalars['String'];
+  country: Maybe<Scalars['String']>;
+  config: Maybe<ConfigInput>;
 };
 
 
-/** Query any Pokémon by number or name */
-export type QueryPokemonArgs = {
-  id: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+export type QueryGetCityByIdArgs = {
+  id: Maybe<Array<Scalars['String']>>;
+  config: Maybe<ConfigInput>;
 };
 
-/** Represents a Pokémon */
-export type Pokemon = {
-  __typename?: 'Pokemon';
-  /** The attacks of this Pokémon */
-  attacks: Maybe<PokemonAttack>;
-  /** The classification of this Pokémon */
-  classification: Maybe<Scalars['String']>;
-  /** The evolution requirements of this Pokémon */
-  evolutionRequirements: Maybe<PokemonEvolutionRequirement>;
-  /** The evolutions of this Pokémon */
-  evolutions: Maybe<Array<Maybe<Pokemon>>>;
-  fleeRate: Maybe<Scalars['Float']>;
-  /** The minimum and maximum weight of this Pokémon */
-  height: Maybe<PokemonDimension>;
-  /** The ID of an object */
-  id: Scalars['ID'];
-  image: Maybe<Scalars['String']>;
-  isFavorite: Scalars['Boolean'];
-  /** The maximum CP of this Pokémon */
-  maxCP: Maybe<Scalars['Int']>;
-  /** The maximum HP of this Pokémon */
-  maxHP: Maybe<Scalars['Int']>;
-  /** The name of this Pokémon */
-  name: Maybe<Scalars['String']>;
-  /** The identifier of this Pokémon */
-  number: Maybe<Scalars['String']>;
-  /** The type(s) of Pokémons that this Pokémon is resistant to */
-  resistant: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** The type(s) of this Pokémon */
-  types: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** The type(s) of Pokémons that this Pokémon weak to */
-  weaknesses: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** The minimum and maximum weight of this Pokémon */
-  weight: Maybe<PokemonDimension>;
-};
+export enum Unit {
+  Metric = 'metric',
+  Imperial = 'imperial',
+  Kelvin = 'kelvin'
+}
 
-/** Represents a Pokémon's dimensions */
-export type PokemonDimension = {
-  __typename?: 'PokemonDimension';
-  /** The minimum value of this dimension */
-  minimum: Maybe<Scalars['String']>;
-  /** The maximum value of this dimension */
-  maximum: Maybe<Scalars['String']>;
-};
+export enum Language {
+  Af = 'af',
+  Al = 'al',
+  Ar = 'ar',
+  Az = 'az',
+  Bg = 'bg',
+  Ca = 'ca',
+  Cz = 'cz',
+  Da = 'da',
+  De = 'de',
+  El = 'el',
+  En = 'en',
+  Eu = 'eu',
+  Fa = 'fa',
+  Fi = 'fi',
+  Fr = 'fr',
+  Gl = 'gl',
+  He = 'he',
+  Hi = 'hi',
+  Hr = 'hr',
+  Hu = 'hu',
+  Id = 'id',
+  It = 'it',
+  Ja = 'ja',
+  Kr = 'kr',
+  La = 'la',
+  Lt = 'lt',
+  Mk = 'mk',
+  No = 'no',
+  Nl = 'nl',
+  Pl = 'pl',
+  Pt = 'pt',
+  PtBr = 'pt_br',
+  Ro = 'ro',
+  Ru = 'ru',
+  Sv = 'sv',
+  Se = 'se',
+  Sk = 'sk',
+  Sl = 'sl',
+  Sp = 'sp',
+  Es = 'es',
+  Sr = 'sr',
+  Th = 'th',
+  Tr = 'tr',
+  Ua = 'ua',
+  Uk = 'uk',
+  Vi = 'vi',
+  ZhCn = 'zh_cn',
+  ZhTw = 'zh_tw',
+  Zu = 'zu'
+}
 
-/** Represents a Pokémon's attack types */
-export type PokemonAttack = {
-  __typename?: 'PokemonAttack';
-  /** The fast attacks of this Pokémon */
-  fast: Maybe<Array<Maybe<Attack>>>;
-  /** The special attacks of this Pokémon */
-  special: Maybe<Array<Maybe<Attack>>>;
-};
+export enum CacheControlScope {
+  Public = 'PUBLIC',
+  Private = 'PRIVATE'
+}
 
-/** Represents a Pokémon's attack types */
-export type Attack = {
-  __typename?: 'Attack';
-  /** The name of this Pokémon attack */
-  name: Maybe<Scalars['String']>;
-  /** The type of this Pokémon attack */
-  type: Maybe<Scalars['String']>;
-  /** The damage of this Pokémon attack */
-  damage: Maybe<Scalars['Int']>;
-};
-
-/** Represents a Pokémon's requirement to evolve */
-export type PokemonEvolutionRequirement = {
-  __typename?: 'PokemonEvolutionRequirement';
-  /** The amount of candy to evolve */
-  amount: Maybe<Scalars['Int']>;
-  /** The name of the candy to evolve */
-  name: Maybe<Scalars['String']>;
-};
 
 export type IsFavoriteFragment = (
-  { __typename?: 'Pokemon' }
-  & Pick<Pokemon, 'isFavorite'>
+  { __typename?: 'City' }
+  & Pick<City, 'isFavorite'>
 );
 
-export type GetPokemonQueryVariables = Exact<{
-  name: Maybe<Scalars['String']>;
+export type GetCityByNameQueryVariables = Exact<{
+  name: Scalars['String'];
 }>;
 
 
-export type GetPokemonQuery = (
+export type GetCityByNameQuery = (
   { __typename?: 'Query' }
-  & { pokemon: Maybe<(
-    { __typename?: 'Pokemon' }
-    & Pick<Pokemon, 'id' | 'name'>
+  & { getCityByName: Maybe<(
+    { __typename?: 'City' }
+    & Pick<City, 'id' | 'name' | 'country'>
+    & { weather: Maybe<(
+      { __typename?: 'Weather' }
+      & { temperature: Maybe<(
+        { __typename?: 'Temperature' }
+        & Pick<Temperature, 'actual' | 'feelsLike' | 'min' | 'max'>
+      )> }
+    )> }
     & IsFavoriteFragment
   )> }
 );
 
 export const IsFavoriteFragmentDoc = gql`
-    fragment IsFavorite on Pokemon {
+    fragment IsFavorite on City {
   isFavorite @client
 }
     `;
-export const GetPokemonDocument = gql`
-    query GetPokemon($name: String) {
-  pokemon(name: $name) {
+export const GetCityByNameDocument = gql`
+    query getCityByName($name: String!) {
+  getCityByName(name: $name) {
     id
     name
+    country
+    weather {
+      temperature {
+        actual
+        feelsLike
+        min
+        max
+      }
+    }
     ...IsFavorite
   }
 }
     ${IsFavoriteFragmentDoc}`;
 
 /**
- * __useGetPokemonQuery__
+ * __useGetCityByNameQuery__
  *
- * To run a query within a React component, call `useGetPokemonQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPokemonQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetCityByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCityByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetPokemonQuery({
+ * const { data, loading, error } = useGetCityByNameQuery({
  *   variables: {
  *      name: // value for 'name'
  *   },
  * });
  */
-export function useGetPokemonQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetPokemonQuery, GetPokemonQueryVariables>(GetPokemonDocument, baseOptions);
+export function useGetCityByNameQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetCityByNameQuery, GetCityByNameQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetCityByNameQuery, GetCityByNameQueryVariables>(GetCityByNameDocument, baseOptions);
       }
-export function useGetPokemonLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetPokemonQuery, GetPokemonQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetPokemonQuery, GetPokemonQueryVariables>(GetPokemonDocument, baseOptions);
+export function useGetCityByNameLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetCityByNameQuery, GetCityByNameQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetCityByNameQuery, GetCityByNameQueryVariables>(GetCityByNameDocument, baseOptions);
         }
-export type GetPokemonQueryHookResult = ReturnType<typeof useGetPokemonQuery>;
-export type GetPokemonLazyQueryHookResult = ReturnType<typeof useGetPokemonLazyQuery>;
-export type GetPokemonQueryResult = ApolloReactCommon.QueryResult<GetPokemonQuery, GetPokemonQueryVariables>;
+export type GetCityByNameQueryHookResult = ReturnType<typeof useGetCityByNameQuery>;
+export type GetCityByNameLazyQueryHookResult = ReturnType<typeof useGetCityByNameLazyQuery>;
+export type GetCityByNameQueryResult = ApolloReactCommon.QueryResult<GetCityByNameQuery, GetCityByNameQueryVariables>;
